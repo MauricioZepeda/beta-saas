@@ -1,0 +1,23 @@
+{
+  "name": "beta-saas",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/MauricioZepeda/beta-saas.git",
+  "author": "Mauricio Zepeda <mauro.zepeda.rivera@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [], 
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "web-push": "^3.4.3"
+  },
+  "devDependencies": {
+    "morgan": "^1.9.1",
+    "nodemon": "^2.0.2"
+  }
+
+}
