@@ -4,10 +4,9 @@ const router = Router();
 const webpush = require("../webpush");
 let pushSubscripton;
 
-router.post("/subscription", async (req, res) => {
-    console.log('sdsdssd')
+router.post("/subscription", async (req, res) => { 
     pushSubscripton = req.body;
-    console.log(pushSubscripton);
+    //console.log(pushSubscripton);
 
     // Server's Response
     res.status(201).json();
