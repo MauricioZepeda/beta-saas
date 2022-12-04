@@ -1,6 +1,5 @@
-(()=>{
-  const PUBLIC_VAPID_KEY = "ENTER_PUBLIC_KEY";
- 
+(()=>{ 
+
   // SW ---------------------------------------------------------------------------------------------------- 
   const registerSW = async () => {
     const register = await navigator.serviceWorker.register("/sw.js", {
@@ -10,11 +9,19 @@
   } 
   
 
+  const GetPublicKey = async()=>{
+    const response = await fetch('/publickey');
+    const publickey = await response.json();       
+    return publickey;
+  }
+
   // PUSH --------------------------------------------------------------------------------------------------
   const getSubscriptionPush = async (register) => {  
+    const getPublicKey = await GetPublicKey(); 
+
     const subscription = await register.pushManager.subscribe({
       userVisibleOnly: true,
-      applicationServerKey: urlBase64ToUint8Array(PUBLIC_VAPID_KEY)
+      applicationServerKey: urlBase64ToUint8Array(getPublicKey)
     });
     return subscription;  
   };
@@ -109,9 +116,22 @@
     });
   }
 
+
+  const addBoton = async() => {
+    const key = await GetPublicKey();
+    var tag = document.createElement("button");
+    var text = document.createTextNode(key);
+    tag.appendChild(text);
+    var element = document.querySelector('body');
+    element.appendChild(tag);
+  }
+
   const setHandlersDOM = () => {
     addHandlerSimple();
     addHandlerPush();
+    
+    addBoton();
+    
   }  
 
 

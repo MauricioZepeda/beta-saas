@@ -1,22 +1,18 @@
+require('dotenv').config();
 const { Router } = require("express");
-const router = Router();
+const router = Router(); 
 
 const webpush = require("../webpush");
 let pushSubscripton;
 
+router.get('/publickey', function (req, res) { 
+  res.json(process.env.PUBLIC_VAPID_KEY);
+});
+
 router.post("/subscription", async (req, res) => { 
     pushSubscripton = req.body;
-    //console.log(pushSubscripton);
-
-    // Server's Response
     res.status(201).json();
 });
-
-router.post("/test", async (req, res) => {    
-    console.log("OK");
-    res.status(200).json("OK");
-});
- 
 
 router.post("/new-message", async (req, res) => {
   const { message } = req.body;
@@ -32,6 +28,5 @@ router.post("/new-message", async (req, res) => {
     console.log(error);
   }
 });
-
 
 module.exports = router;

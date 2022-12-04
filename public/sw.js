@@ -16,7 +16,7 @@ self.addEventListener('activate', event => {
 self.addEventListener('message', event => {
   let data = event.data; 
   let clientId = event.source.id;
-    
+    console.log('asdasd', data)
   if ('forOne' in data) { 
       const {color, name, id} = data.forOne
       sendMessage(
@@ -31,10 +31,11 @@ self.addEventListener('message', event => {
   }
 });
 
+
+
+
 self.addEventListener('push', e => {
-  const data = e.data.json();
-  console.log({data})
-  console.log(data)
+  const data = e.data.json(); 
   console.log('Notification Received');
   self.registration.showNotification(data.title, {
       body: data.message,
